@@ -257,6 +257,7 @@ public class Sorting {
                 left++;
                 sortCount++;
             }
+            if (left>=right) sortCount--;
             sortCount++;
             // search for an element that is < the partition element
             while (data[right].compareTo(partitionelement) > 0) {

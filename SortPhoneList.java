@@ -24,11 +24,13 @@ public class SortPhoneList
         
         //Sorting.selectionSort(friends);
         //Sorting.bubbleSort(friends);
-        //Sorting.insertionSort(friends);
-        Sorting.quickSort(friends);
-
-        for (Contact friend : friends)
-            System.out.println(friend);
+        Sorting.insertionSort(friends);
+        //Sorting.quickSort(friends);
+        //Sorting.mergeSort(friends);
+        System.out.println(Contact.count);
+//        for (Contact friend : friends)
+//            System.out.println(friend);
+        
     }
 }
 
