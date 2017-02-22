@@ -22,13 +22,19 @@ public class SortPhoneList
         friends[5] = new Contact("Frank", "Phelps", "322-555-2284");
         friends[6] = new Contact("Marsha", "Grant", "243-555-2837");
         
-        //Sorting.selectionSort(friends);
-        //Sorting.bubbleSort(friends);
-        //Sorting.insertionSort(friends);
+        Sorting.selectionSort(friends);
+        Sorting.selectionSort(friends);
+//        System.out.println(Contact.getCounter());
+        Sorting.bubbleSort(friends);
+//        System.out.println(Contact.getCounter());
+//        Contact.resetCounter();
+        Sorting.insertionSort(friends);//16 by getCounter()
         Sorting.quickSort(friends);
-
-        for (Contact friend : friends)
-            System.out.println(friend);
+        Sorting.mergeSort(friends);
+//        System.out.println(Contact.getCounter());
+//        for (Contact friend : friends)
+//            System.out.println(friend);
+        
     }
 }
 

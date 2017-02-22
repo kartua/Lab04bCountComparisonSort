@@ -7,11 +7,14 @@ import java.util.Arrays;
  * @author Java Foundations
  * @version 4.0
  */
-public class Sorting {
+public class Sorting1 {
 
     //Variable to count number of comparison.
     private static int sortCounter = 0;
     //variavle to count swap in pass and swap of inner loop.(quicksort)
+    private static int quickpassCounter = 0, quickinnerCounter = 0,
+            quickbeginCounter = 0;
+
     /**
      * Sorts the specified array of integers using the selection sort algorithm.
      *
@@ -36,8 +39,8 @@ public class Sorting {
             swap(data, min, index);
         }
         System.out.println("Selectinsort comparison: " + sortCounter);
-        System.out.println("Running time(ms): "
-                + (System.currentTimeMillis() - begin) + "\n");
+        System.out.println("Running time: "
+                + (System.currentTimeMillis() - begin) + "ms\n");
 
     }
 
@@ -85,8 +88,8 @@ public class Sorting {
         }
         System.out.println("Insertionsort comparison: "
                 + sortCounter);
-        System.out.println("Running time(ms): "
-                + (System.currentTimeMillis() - begin) + "\n");
+        System.out.println("Running time: "
+                + (System.currentTimeMillis() - begin) + "ms\n");
     }
 
     /**
@@ -110,8 +113,8 @@ public class Sorting {
             }
         }
         System.out.println("Bubblesort comparison: " + sortCounter);
-        System.out.println("Running time(ms): "
-                + (System.currentTimeMillis() - begin) + "\n");
+        System.out.println("Running time: "
+                + (System.currentTimeMillis() - begin) + "ms\n");
     }
 
     /**
@@ -122,11 +125,7 @@ public class Sorting {
     public static <T extends Comparable<T>>
             void mergeSort(T[] data) {
         sortCounter = 0;
-        long begin = System.currentTimeMillis();
         mergeSort(data, 0, data.length - 1);
-        System.out.println("Mergesort comparison: " + sortCounter);
-        System.out.println("Running time(ms): "
-                + (System.currentTimeMillis() - begin) + "\n");
     }
 
     /**
@@ -174,7 +173,6 @@ public class Sorting {
                 temp[index] = data[first2];
                 first2++;
             }
-            sortCounter++;
             index++;
         }
 
@@ -196,6 +194,10 @@ public class Sorting {
         for (index = first; index <= last; index++) {
             data[index] = temp[index];
         }
+        for(int i = first; i<=last; i++){
+            System.out.print(data[i]);
+        }
+        System.out.println("");
     }
 
     /**
@@ -206,11 +208,14 @@ public class Sorting {
     public static <T extends Comparable<T>>
             void quickSort(T[] data) {
         long startTime = System.currentTimeMillis();
+        quickinnerCounter = 0;
+        quickpassCounter = 0;
+        quickbeginCounter = 1;
         sortCounter = 0;
         quickSort(data, 0, data.length - 1);
         long excutionTime = System.currentTimeMillis() - startTime;
         System.out.println("Quicksort comparison: " + sortCounter);
-        System.out.println("Running time(ms): " + excutionTime + "\n");
+        System.out.println("Running time: " + excutionTime + "ms");
 
     }
 
@@ -251,8 +256,24 @@ public class Sorting {
 
         // use the middle data value as the partition element
         partitionelement = data[middle];
+        ////////////////////////////////////////////////////////////////////////
+        // print array elements
+        System.out.print("Begin" + quickbeginCounter + "      : ");
+        for (int i = min; i<=max; i++) {
+            System.out.print(data[i] + ", ");
+        }
+        System.out.println("");
+        ///////////////////////////////////////////////////////////////////////
         // move it out of the way for now
         swap(data, middle, min);
+        ////////////////////////////////////////////////////////////////////////
+        // print array elements
+        System.out.print("MoveAwayEle" + quickbeginCounter++ + ": ");
+        for (int i = min; i<=max; i++) {
+            System.out.print(data[i] + ", ");
+        }
+        System.out.println("");
+        ///////////////////////////////////////////////////////////////////////
 
         left = min;
         right = max;
@@ -277,11 +298,28 @@ public class Sorting {
             // swap the elements
             if (left < right) {
                 swap(data, left, right);
+                //////////////////////////////////////////////////////////////
+                // print array elements
+                System.out.print("Inner" + ++quickinnerCounter + "      : ");
+                for (int i = min; i<=max; i++) {
+                System.out.print(data[i] + ", ");
+                }
+                System.out.println("");
+                //////////////////////////////////////////////////////////////
             }
         }
 
         // move the partition element into place
         swap(data, min, right);
+
+        /////////////////////////////////////////////////////////////////////
+        // print array elements
+        System.out.print("Pass" + ++quickpassCounter + "       : ");
+        for (int i = min; i<=max; i++) {
+            System.out.print(data[i] + ", ");
+        }
+        System.out.println("\n");
+        /////////////////////////////////////////////////////////////////////
         return right;
     }
 

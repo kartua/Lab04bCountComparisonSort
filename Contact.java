@@ -7,6 +7,7 @@
 public class Contact implements Comparable<Contact>
 {
     private String firstName, lastName, phone;
+    private static int counter = 0;
 
     /**
      * Sets up this contact with the specified information.
@@ -39,14 +40,22 @@ public class Contact implements Comparable<Contact>
      * @return      the integer result of the comparison
      */
     public int compareTo(Contact other)
-    {
+    {   
+        counter++;
         int result;
-
         if (lastName.equals(other.lastName))
             result = firstName.compareTo(other.firstName);
         else
             result = lastName.compareTo(other.lastName);
-
         return result;
+    }
+    public static int getCounter(){
+        return counter;
+    }
+    public static void subtractCounter(int i){
+        counter -=i;
+    }
+    public static void resetCounter(){
+        counter = 0;
     }
 }
